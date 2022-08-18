@@ -1,4 +1,4 @@
-package org.bowlingsyndicate;
+package org.bowlingsyndicate.domain;
 
 public enum FrameScore {
     pins_0,
@@ -11,6 +11,6 @@ public enum FrameScore {
     pins_7,
     pins_8,
     pins_9,
-    Spare,      // <-- second throw has no pins standing
-    Strike      // <-- First throw drops all pins.
+    Spare,      // <-- second roll has no pins standing
+    Strike      // <-- First roll drops all pins.
 }

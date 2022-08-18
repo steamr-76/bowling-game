@@ -1,10 +1,12 @@
 package org.bowlingsyndicate;
 
+import org.bowlingsyndicate.contract.BowlingFrameFactory;
+import org.bowlingsyndicate.error.BowlingScoreException;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.bowlingsyndicate.FrameScore.*;
+import static org.bowlingsyndicate.domain.FrameScore.*;
 
 abstract class BowlingFrameFactoryTest {
 
@@ -37,7 +39,7 @@ abstract class BowlingFrameFactoryTest {
     }
 
     @Test
-    void invalidFigures() {
+    void invalidRolls() {
         assertThatExceptionOfType(BowlingScoreException.class).isThrownBy(
                 ()-> bowlingFrameFactory.createBowlingFrame(11, 0)
         );

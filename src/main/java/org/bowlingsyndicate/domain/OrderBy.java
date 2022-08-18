@@ -1,4 +1,4 @@
-package org.bowlingsyndicate;
+package org.bowlingsyndicate.domain;
 
 public enum OrderBy {
     Score,

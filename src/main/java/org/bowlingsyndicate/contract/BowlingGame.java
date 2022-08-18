@@ -1,4 +1,7 @@
-package org.bowlingsyndicate;
+package org.bowlingsyndicate.contract;
+
+import org.bowlingsyndicate.domain.OrderBy;
+import org.bowlingsyndicate.domain.Player;
 
 import java.util.List;
 import java.util.Optional;

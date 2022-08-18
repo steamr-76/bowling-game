@@ -1,4 +1,7 @@
-package org.bowlingsyndicate;
+package org.bowlingsyndicate.contract;
+
+import org.bowlingsyndicate.domain.BowlingFrame;
+import org.bowlingsyndicate.error.BowlingGameException;
 
 public interface BowlingFrameFactory {
     /**
