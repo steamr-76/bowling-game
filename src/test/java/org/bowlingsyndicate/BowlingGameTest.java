@@ -2,6 +2,8 @@ package org.bowlingsyndicate;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.core.api.ThrowableAssert.catchThrowable;
@@ -14,7 +16,7 @@ public abstract class BowlingGameTest {
     void cannotStartWithoutPlayers()  {
         assertThat(
                 catchThrowable(game::beginGameplay))
-                .isInstanceOf(BowlingGameError.class)
+                .isInstanceOf(BowlingGameException.class)
                 .hasMessage("Game cannot start with 1 player");
     }
 
@@ -34,7 +36,7 @@ public abstract class BowlingGameTest {
         assertThat(
                 catchThrowable(()->game.addPlayer(player("player2")))
         )
-                .isInstanceOf(BowlingGameError.class)
+                .isInstanceOf(BowlingGameException.class)
                 .hasMessage("Cannot add player after start");
     }
 
@@ -52,16 +54,16 @@ public abstract class BowlingGameTest {
             }
             assertThat(game.getCurrentPlayerInAction()).containsSame(player1);
             assertThat(game.isFinalFrame()).isEqualTo(frame == 10);
-            game.registerPlayerScore(player1, bowlingFrame(10));
+            game.registerPlayerScore(player1, List.of(10));
         } while(game.isFinished());
 
         assertThat(frame).isEqualTo(10);
         assertThat(game.getCurrentPlayerInAction()).isEmpty();
 
-        game.registerPlayerScore(player1, bowlingFrame(10));
+        game.registerPlayerScore(player1, List.of(10));
         assertThat(game.getCurrentPlayerInAction()).containsSame(player1);
         assertThat(game.isFinalFrame()).isFalse();
-        game.registerPlayerScore(player1, bowlingFrame(10));
+        game.registerPlayerScore(player1, List.of(10));
     }
 
     @Test
@@ -74,13 +76,10 @@ public abstract class BowlingGameTest {
         assertThat(
                 catchThrowable(()->game.addPlayer(player("excessivePlayer")))
         )
-                .isInstanceOf(BowlingGameError.class)
+                .isInstanceOf(BowlingGameException.class)
                 .hasMessage("Too many players already");
     }
 
     protected abstract BowlingGame instance();
     protected abstract Player player(String name);
-    protected abstract BowlingFrame bowlingFrame(int roll1);
-    protected abstract BowlingFrame bowlingFrame(int roll1, int roll2);
-    protected abstract BowlingFrame bowlingFrame(int roll1, int roll2, int roll3);
 }
