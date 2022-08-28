@@ -1,6 +1,6 @@
 package org.bowlingsyndicate.domain;
 
-public enum FrameScore {
+public enum FrameResult {
     pins_0,
     pins_1,
     pins_2,

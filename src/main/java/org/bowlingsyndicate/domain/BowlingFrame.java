@@ -1,20 +1,17 @@
 package org.bowlingsyndicate.domain;
 
-import org.bowlingsyndicate.domain.FrameScore;
-
-import java.util.Collections;
 import java.util.List;
 
 import static java.util.Collections.unmodifiableList;
 
 public class BowlingFrame {
-    private final List<FrameScore> frameScores;
+    private final List<FrameResult> frameResults;
 
-    public BowlingFrame(List<FrameScore> frameScores) {
-        this.frameScores = unmodifiableList(frameScores);
+    public BowlingFrame(List<FrameResult> frameResults) {
+        this.frameResults = unmodifiableList(frameResults);
     }
 
-    public List<FrameScore> getFrameScore() {
-        return frameScores;
+    public List<FrameResult> getFrameResults() {
+        return frameResults;
     }
 }

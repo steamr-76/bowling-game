@@ -1,4 +1,4 @@
-package org.bowlingsyndicate;
+package org.bowlingsyndicate.contract;
 
 import org.bowlingsyndicate.contract.BowlingGame;
 import org.bowlingsyndicate.domain.OrderBy;
@@ -75,15 +75,17 @@ public abstract class BowlingGameTest {
             }
 
             assertThat(game.getCurrentPlayerInAction()).containsSame(player1);
-            game.registerPlayerScore(player1, List.of(0));
+            game.registerPlayerRoll(player1, 0);
 
             assertThat(game.getCurrentPlayerInAction()).containsSame(player2);
             if(frame < 10) {
                 assertThat(game.isFinalFrame()).isFalse();
-                game.registerPlayerScore(player2, List.of(10));
+                game.registerPlayerRoll(player2, 10);
             } else {
                 assertThat(game.isFinalFrame()).isTrue();
-                game.registerPlayerScore(player2, List.of(10, 10, 10));
+                game.registerPlayerRoll(player2, 10);
+                game.registerPlayerRoll(player2, 10);
+                game.registerPlayerRoll(player2, 10);
             }
         } while(game.isFinished());
 

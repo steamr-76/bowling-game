@@ -1,6 +1,7 @@
 package org.bowlingsyndicate.contract;
 
 import org.bowlingsyndicate.domain.BowlingFrame;
+import org.bowlingsyndicate.domain.BowlingFrameWithScore;
 import org.bowlingsyndicate.error.BowlingScoreException;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public interface BowlingScoreCalculator {
      * @return total score value.
      * @throws BowlingScoreException Thrown if frames are > 10, or if frames
      * contains impossible combinations. (ie  more than one strike in frames
-     * 0-9)
+     * 0-9), or if framescores are calculated (set) but with wrong values.
      */
-    int calculateScore(List<BowlingFrame> frames) throws BowlingScoreException;
+    List<BowlingFrame> calculateScore(List<BowlingFrame> frames) throws BowlingScoreException;
 }

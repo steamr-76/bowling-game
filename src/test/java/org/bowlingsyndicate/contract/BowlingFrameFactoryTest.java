@@ -1,12 +1,11 @@
-package org.bowlingsyndicate;
+package org.bowlingsyndicate.contract;
 
-import org.bowlingsyndicate.contract.BowlingFrameFactory;
 import org.bowlingsyndicate.error.BowlingScoreException;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.bowlingsyndicate.domain.FrameScore.*;
+import static org.bowlingsyndicate.domain.FrameResult.*;
 
 abstract class BowlingFrameFactoryTest {
 
@@ -14,27 +13,27 @@ abstract class BowlingFrameFactoryTest {
 
     @Test
     void totalMiss() {
-        assertThat(bowlingFrameFactory.createBowlingFrame(0, 0).getFrameScore())
+        assertThat(bowlingFrameFactory.createBowlingFrame(0, 0).getFrameResults())
                 .containsExactly(pins_0, pins_0);
     }
 
     @Test
     void validateOpenFrame() {
-        assertThat(bowlingFrameFactory.createBowlingFrame(0, 4).getFrameScore())
+        assertThat(bowlingFrameFactory.createBowlingFrame(0, 4).getFrameResults())
                 .containsExactly(pins_0, pins_4);
     }
 
     @Test
     void validateSpare() {
-        assertThat(bowlingFrameFactory.createBowlingFrame(6, 4).getFrameScore())
+        assertThat(bowlingFrameFactory.createBowlingFrame(6, 4).getFrameResults())
                 .containsExactly(pins_6, Spare);
-        assertThat(bowlingFrameFactory.createBowlingFrame(0, 10).getFrameScore())
+        assertThat(bowlingFrameFactory.createBowlingFrame(0, 10).getFrameResults())
                 .containsExactly(pins_0, Spare);
     }
 
     @Test
     void validateStrike() {
-        assertThat(bowlingFrameFactory.createBowlingFrame(10, 0).getFrameScore())
+        assertThat(bowlingFrameFactory.createStrikeFrame().getFrameResults())
                 .containsExactly(Strike);
     }
 
@@ -52,21 +51,24 @@ abstract class BowlingFrameFactoryTest {
         assertThatExceptionOfType(BowlingScoreException.class).isThrownBy(
                 ()-> bowlingFrameFactory.createBowlingFrame(10, 7)
         );
+        assertThatExceptionOfType(BowlingScoreException.class).isThrownBy(
+                () -> bowlingFrameFactory.createBowlingFrame(10, 0)
+        );
     }
 
 
     @Test
     void validTenthFrame() {
-        assertThat(bowlingFrameFactory.createLastBowlingFrame(10, 10, 10).getFrameScore())
+        assertThat(bowlingFrameFactory.createLastBowlingFrame(10, 10, 10).getFrameResults())
                 .containsExactly(Strike, Strike, Strike);
 
-        assertThat(bowlingFrameFactory.createLastBowlingFrame(10, 10, 4).getFrameScore())
+        assertThat(bowlingFrameFactory.createLastBowlingFrame(10, 10, 4).getFrameResults())
                 .containsExactly(Strike, Strike, pins_4);
 
-        assertThat(bowlingFrameFactory.createLastBowlingFrame(10, 5, 0).getFrameScore())
+        assertThat(bowlingFrameFactory.createLastBowlingFrame(10, 5, 0).getFrameResults())
                 .containsExactly(Strike, pins_5);
 
-        assertThat(bowlingFrameFactory.createLastBowlingFrame(5, 5, 0).getFrameScore())
+        assertThat(bowlingFrameFactory.createLastBowlingFrame(5, 5, 0).getFrameResults())
                 .containsExactly(pins_5, pins_5);
     }
 

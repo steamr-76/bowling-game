@@ -5,6 +5,13 @@ import org.bowlingsyndicate.error.BowlingGameException;
 
 public interface BowlingFrameFactory {
     /**
+     * A strike. Nothing further can occur in this frame.
+     *
+     * @return generated Frame result.
+     */
+    BowlingFrame createStrikeFrame() throws BowlingGameException;
+
+    /**
      * Validates result: Total cannot be more than 10, unless it is
      * the last frame. Then it has to be consecutive strikes.
      *
