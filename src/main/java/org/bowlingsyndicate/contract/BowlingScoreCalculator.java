@@ -20,7 +20,7 @@ public interface BowlingScoreCalculator {
      * @return total score value.
      * @throws BowlingScoreException Thrown if frames are > 10, or if frames
      * contains impossible combinations. (ie  more than one strike in frames
-     * 0-9), or if framescores are calculated (set) but with wrong values.
+     * 0-9), or if frame-scores are calculated (set) but with wrong values.
      */
     List<BowlingFrame> calculateScore(List<BowlingFrame> frames) throws BowlingScoreException;
 }

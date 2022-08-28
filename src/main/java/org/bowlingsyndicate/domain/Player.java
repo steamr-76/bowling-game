@@ -4,7 +4,7 @@ package org.bowlingsyndicate.domain;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Player {
+public final class Player {
     private final String nickName;
     private final List<BowlingFrame> frames = new LinkedList<>();
 
