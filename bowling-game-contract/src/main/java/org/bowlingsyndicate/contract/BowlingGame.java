@@ -1,7 +1,6 @@
 package org.bowlingsyndicate.contract;
 
 import org.bowlingsyndicate.domain.BowlingFrame;
-import org.bowlingsyndicate.domain.FrameResult;
 import org.bowlingsyndicate.domain.OrderBy;
 import org.bowlingsyndicate.domain.Player;
 import org.bowlingsyndicate.error.BowlingGameException;

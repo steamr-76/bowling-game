@@ -1,5 +1,6 @@
-package org.bowlingsyndicate.contract;
+package org.bowlingsyndicate.contract.tests;
 
+import org.bowlingsyndicate.contract.BowlingScoreCalculator;
 import org.bowlingsyndicate.domain.BowlingFrame;
 import org.bowlingsyndicate.domain.BowlingFrameWithScore;
 import org.bowlingsyndicate.domain.FrameResult;
@@ -9,25 +10,24 @@ import java.util.List;
 
 import static java.util.List.of;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.bowlingsyndicate.domain.FrameResult.*;
 
-abstract class TraditionalBowlingScoreCalculatorTest {
+public abstract class TraditionalBowlingScoreCalculatorTest {
 
     BowlingScoreCalculator calculator = bowlingScoreCalculator();
 
     @Test
-    void iWannaGoHide() {
+    public void iWannaGoHide() {
         List<BowlingFrame> bowlingFrames = calculator.calculateScore(of(
-                frame(pins_0, pins_0),
-                frame(pins_0, pins_0),
-                frame(pins_0, pins_0),
-                frame(pins_0, pins_0),
-                frame(pins_0, pins_0),
-                frame(pins_0, pins_0),
-                frame(pins_0, pins_0),
-                frame(pins_0, pins_0),
-                frame(pins_0, pins_0),
-                frame(pins_0, pins_0)
+                frame(FrameResult.pins_0, FrameResult.pins_0),
+                frame(FrameResult.pins_0, FrameResult.pins_0),
+                frame(FrameResult.pins_0, FrameResult.pins_0),
+                frame(FrameResult.pins_0, FrameResult.pins_0),
+                frame(FrameResult.pins_0, FrameResult.pins_0),
+                frame(FrameResult.pins_0, FrameResult.pins_0),
+                frame(FrameResult.pins_0, FrameResult.pins_0),
+                frame(FrameResult.pins_0, FrameResult.pins_0),
+                frame(FrameResult.pins_0, FrameResult.pins_0),
+                frame(FrameResult.pins_0, FrameResult.pins_0)
         ));
 
         assertThat(bowlingFrames.size()).isEqualTo(10);
@@ -42,17 +42,17 @@ abstract class TraditionalBowlingScoreCalculatorTest {
 
     @Test
     void weGoOnAFullStrike() {
-        List<BowlingFrame> bowlingFrames = calculator.calculateScore(of(
-                frame(Strike),
-                frame(Strike),
-                frame(Strike),
-                frame(Strike),
-                frame(Strike),
-                frame(Strike),
-                frame(Strike),
-                frame(Strike),
-                frame(Strike),
-                frame(Strike, Strike, Strike)
+        List<BowlingFrame> bowlingFrames = calculator.calculateScore(List.of(
+                frame(FrameResult.Strike),
+                frame(FrameResult.Strike),
+                frame(FrameResult.Strike),
+                frame(FrameResult.Strike),
+                frame(FrameResult.Strike),
+                frame(FrameResult.Strike),
+                frame(FrameResult.Strike),
+                frame(FrameResult.Strike),
+                frame(FrameResult.Strike),
+                frame(FrameResult.Strike, FrameResult.Strike, FrameResult.Strike)
         ));
 
         assertThat(bowlingFrames.size()).isEqualTo(10);
@@ -71,16 +71,16 @@ abstract class TraditionalBowlingScoreCalculatorTest {
     @Test
     void spareMe() {
         List<BowlingFrame> bowlingFrames = calculator.calculateScore(of(
-                frame(pins_1, Spare),
-                frame(pins_2, Spare),
-                frame(pins_3, Spare),
-                frame(pins_4, Spare),
-                frame(pins_5, Spare),
-                frame(pins_6, Spare),
-                frame(pins_7, Spare),
-                frame(pins_8, Spare),
-                frame(pins_9, Spare),
-                frame(pins_1, Spare, pins_5)
+                frame(FrameResult.pins_1, FrameResult.Spare),
+                frame(FrameResult.pins_2, FrameResult.Spare),
+                frame(FrameResult.pins_3, FrameResult.Spare),
+                frame(FrameResult.pins_4, FrameResult.Spare),
+                frame(FrameResult.pins_5, FrameResult.Spare),
+                frame(FrameResult.pins_6, FrameResult.Spare),
+                frame(FrameResult.pins_7, FrameResult.Spare),
+                frame(FrameResult.pins_8, FrameResult.Spare),
+                frame(FrameResult.pins_9, FrameResult.Spare),
+                frame(FrameResult.pins_1, FrameResult.Spare, FrameResult.pins_5)
         ));
 
         assertThat(bowlingFrames.size()).isEqualTo(10);
@@ -97,17 +97,17 @@ abstract class TraditionalBowlingScoreCalculatorTest {
 
     @Test
     void ohMeFeelSoRandom() {
-        List<BowlingFrame> bowlingFrames = calculator.calculateScore(of(
-                frame(pins_5, pins_0),
-                frame(pins_4, pins_5),
-                frame(pins_7, pins_0),
-                frame(pins_4, Spare),
-                frame(Strike),
-                frame(pins_6, pins_3),
-                frame(pins_4, pins_0),
-                frame(pins_8, pins_0),
-                frame(pins_0, pins_3),
-                frame(pins_1, pins_5)
+        List<BowlingFrame> bowlingFrames = calculator.calculateScore(List.of(
+                frame(FrameResult.pins_5, FrameResult.pins_0),
+                frame(FrameResult.pins_4, FrameResult.pins_5),
+                frame(FrameResult.pins_7, FrameResult.pins_0),
+                frame(FrameResult.pins_4, FrameResult.Spare),
+                frame(FrameResult.Strike),
+                frame(FrameResult.pins_6, FrameResult.pins_3),
+                frame(FrameResult.pins_4, FrameResult.pins_0),
+                frame(FrameResult.pins_8, FrameResult.pins_0),
+                frame(FrameResult.pins_0, FrameResult.pins_3),
+                frame(FrameResult.pins_1, FrameResult.pins_5)
         ));
 
         assertThat(bowlingFrames.size()).isEqualTo(10);
@@ -123,11 +123,11 @@ abstract class TraditionalBowlingScoreCalculatorTest {
 
     @Test
     void intermediateResultOfBeingAshamed() {
-        List<BowlingFrame> bowlingFrames = calculator.calculateScore(of(
-                frame(pins_0, pins_0),
-                frame(pins_0, pins_0),
-                frame(pins_0, pins_0),
-                frame(pins_0)
+        List<BowlingFrame> bowlingFrames = calculator.calculateScore(List.of(
+                frame(FrameResult.pins_0, FrameResult.pins_0),
+                frame(FrameResult.pins_0, FrameResult.pins_0),
+                frame(FrameResult.pins_0, FrameResult.pins_0),
+                frame(FrameResult.pins_0)
         ));
 
         assertThat(bowlingFrames.size()).isEqualTo(4);
@@ -141,12 +141,12 @@ abstract class TraditionalBowlingScoreCalculatorTest {
 
     @Test
     void intermediateResultOfSpares() {
-        List<BowlingFrame> bowlingFrames = calculator.calculateScore(of(
-                frame(pins_5, Spare),
-                frame(pins_6, Spare),
-                frame(pins_1, Spare),
-                frame(pins_4, Spare),
-                frame(pins_2)
+        List<BowlingFrame> bowlingFrames = calculator.calculateScore(List.of(
+                frame(FrameResult.pins_5, FrameResult.Spare),
+                frame(FrameResult.pins_6, FrameResult.Spare),
+                frame(FrameResult.pins_1, FrameResult.Spare),
+                frame(FrameResult.pins_4, FrameResult.Spare),
+                frame(FrameResult.pins_2)
         ));
 
         assertThat(bowlingFrames.size()).isEqualTo(5);
@@ -163,10 +163,10 @@ abstract class TraditionalBowlingScoreCalculatorTest {
 
     @Test
     void intermediateResultOfStrikeOhoi() {
-        List<BowlingFrame> bowlingFrames = calculator.calculateScore(of(
-                frame(Strike),
-                frame(Strike),
-                frame(Strike)
+        List<BowlingFrame> bowlingFrames = calculator.calculateScore(List.of(
+                frame(FrameResult.Strike),
+                frame(FrameResult.Strike),
+                frame(FrameResult.Strike)
         ));
 
         assertThat(bowlingFrames.size()).isEqualTo(3);
@@ -180,13 +180,13 @@ abstract class TraditionalBowlingScoreCalculatorTest {
 
     @Test
     void intermediateResultOfMeFeelingSoRandom() {
-        List<BowlingFrame> bowlingFrames = calculator.calculateScore(of(
-                frame(pins_3, pins_6),
-                frame(pins_3, Spare),
-                frame(pins_3, pins_6),
-                frame(Strike),
-                frame(pins_5, pins_3),
-                frame(pins_5)
+        List<BowlingFrame> bowlingFrames = calculator.calculateScore(List.of(
+                frame(FrameResult.pins_3, FrameResult.pins_6),
+                frame(FrameResult.pins_3, FrameResult.Spare),
+                frame(FrameResult.pins_3, FrameResult.pins_6),
+                frame(FrameResult.Strike),
+                frame(FrameResult.pins_5, FrameResult.pins_3),
+                frame(FrameResult.pins_5)
         ));
 
         assertThat(bowlingFrames.size()).isEqualTo(6);
@@ -201,9 +201,9 @@ abstract class TraditionalBowlingScoreCalculatorTest {
         assertThat(bowlingFrames.get(5)).isInstanceOf(BowlingFrame.class);
     }
 
-    abstract BowlingScoreCalculator bowlingScoreCalculator();
+    protected abstract BowlingScoreCalculator bowlingScoreCalculator();
 
     private BowlingFrame frame(FrameResult ... rolls) {
-        return new BowlingFrame(of(rolls));
+        return new BowlingFrame(List.of(rolls));
     }
 }

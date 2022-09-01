@@ -8,32 +8,18 @@
   <artifactId>bowling-score</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>../bowling-game-implementation</module>
-    </modules>
+  <modules>
+    <module>bowling-game-contract</module>
+    <module>bowling-game-contract-tests</module>
+  </modules>
 
-    <name>bowling-score</name>
+  <name>bowling-score</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
   </properties>
-
-
-  <dependencies>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.assertj</groupId>
-      <artifactId>assertj-core</artifactId>
-      <version>3.23.1</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
 
   <build>
     <plugins>
@@ -54,11 +40,6 @@
                 <requireJavaVersion>
                   <version>1.8</version>
                 </requireJavaVersion>
-                <bannedDependencies>
-                  <excludes>
-                    <exclude>*:*:*:*:compile</exclude>
-                  </excludes>
-                </bannedDependencies>
                 <banDistributionManagement />
               </rules>
             </configuration>
@@ -116,11 +97,23 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
+        <groupId>org.bowlingsyndicate</groupId>
+        <artifactId>bowling-game-contract</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
         <groupId>org.junit</groupId>
         <artifactId>junit-bom</artifactId>
         <version>5.9.0</version>
         <type>pom</type>
         <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.assertj</groupId>
+        <artifactId>assertj-core</artifactId>
+        <version>3.23.1</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

@@ -1,7 +1,5 @@
 package org.bowlingsyndicate.domain;
 
-import java.util.List;
-
 public final class BowlingFrameWithScore extends BowlingFrame {
     private final int score;
 

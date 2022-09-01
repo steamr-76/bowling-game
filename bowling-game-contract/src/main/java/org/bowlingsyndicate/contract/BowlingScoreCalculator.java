@@ -1,7 +1,6 @@
 package org.bowlingsyndicate.contract;
 
 import org.bowlingsyndicate.domain.BowlingFrame;
-import org.bowlingsyndicate.domain.BowlingFrameWithScore;
 import org.bowlingsyndicate.error.BowlingScoreException;
 
 import java.util.List;

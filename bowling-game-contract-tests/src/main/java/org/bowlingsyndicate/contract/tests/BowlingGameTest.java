@@ -1,5 +1,7 @@
-package org.bowlingsyndicate.contract;
+package org.bowlingsyndicate.contract.tests;
 
+import org.assertj.core.api.Assertions;
+import org.assertj.core.api.ThrowableAssert;
 import org.bowlingsyndicate.contract.BowlingGame;
 import org.bowlingsyndicate.domain.OrderBy;
 import org.bowlingsyndicate.domain.Player;
@@ -48,10 +50,10 @@ public abstract class BowlingGameTest {
         Player player1 = new Player(("player1"));
         game.addPlayer(player1);
 
-        assertThatExceptionOfType(BowlingGameException.class).isThrownBy(()->
+        Assertions.assertThatExceptionOfType(BowlingGameException.class).isThrownBy(()->
                 game.addPlayer(player1)
         );
-        assertThatExceptionOfType(BowlingGameException.class).isThrownBy(()->
+        Assertions.assertThatExceptionOfType(BowlingGameException.class).isThrownBy(()->
                 game.addPlayer(new Player("player1"))
         );
     }
@@ -71,7 +73,7 @@ public abstract class BowlingGameTest {
         do {
             frame ++;
             if(frame > 10) {
-                fail("There should not be 11 frames in bowling");
+                Assertions.fail("There should not be 11 frames in bowling");
             }
 
             assertThat(game.getCurrentPlayerInAction()).containsSame(player1);
