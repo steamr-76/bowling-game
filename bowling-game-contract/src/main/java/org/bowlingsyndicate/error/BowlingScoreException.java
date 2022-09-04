@@ -1,7 +1,7 @@
 package org.bowlingsyndicate.error;
 
 public class BowlingScoreException extends BowlingGameException {
-    BowlingScoreException(String errorMessage) {
+    public BowlingScoreException(String errorMessage) {
         super(errorMessage);
     }
 }
